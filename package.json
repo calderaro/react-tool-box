@@ -1,6 +1,6 @@
 {
   "name": "@calderaro/react-toolbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react tool box",
   "author": "Angel Calderaro",
   "license": "ISC",
@@ -29,7 +29,7 @@
     "rollup": "^1.29.0",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^2.8.3"
+    "typescript": "^3.9.7"
   },
   "files": [
     "dist"
