@@ -5,6 +5,7 @@
   "author": "Angel Calderaro",
   "license": "ISC",
   "main": "dist/index.js",
+  "repository": "git@github.com:calderaro/react-tool-box.git",
   "engines": {
     "node": ">=10",
     "npm": ">=6"
