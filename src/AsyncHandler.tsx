@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 export interface AsyncHandlerProps<T> {
+  auto?: boolean // auto exec on did mount
   handler: () => Promise<T>
   children(res: {
     state: State<T>
@@ -21,6 +22,12 @@ class AsyncHandler<T> extends React.Component<AsyncHandlerProps<T>, State<T>> {
       status: 'init',
       data: null,
       error: null,
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.auto) {
+      this.execute()
     }
   }
 
