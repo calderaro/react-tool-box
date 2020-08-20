@@ -1,11 +1,14 @@
 {
   "name": "@calderaro/react-toolbox",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "react tool box",
   "author": "Angel Calderaro",
   "license": "ISC",
   "main": "dist/index.js",
-  "repository": "git@github.com:calderaro/react-tool-box.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/calderaro/react-tool-box.git"
+  },
   "engines": {
     "node": ">=10",
     "npm": ">=6"
@@ -14,7 +17,13 @@
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@types/react-router-dom": "^5.1.5",
+    "react-router-dom": "^5.2.0",
+    "typestyle": "^2.1.0"
+  },
   "peerDependencies": {
     "react": ">= 16.8.0 < 2",
     "react-dom": ">= 16.8.0 < 2"
@@ -39,7 +48,8 @@
     "typescript",
     "npm"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  "bugs": {
+    "url": "https://github.com/calderaro/react-tool-box/issues"
+  },
+  "homepage": "https://github.com/calderaro/react-tool-box#readme"
 }
