@@ -31,7 +31,7 @@ export interface FormState<T> {
   error: CustomError | null;
 }
 
-class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> {
+export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> {
   constructor(props: FormHandlerProps<T>) {
     super(props);
     this.state = {
@@ -54,7 +54,7 @@ class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> 
         });
       }
       try {
-        this.setState({ status: 'loading' });
+        this.setState({ status: 'loading', error: null });
         const data = await this.props.load(this.props.id);
         this.setState({ status: 'loaded', data });
       } catch (error) {
@@ -66,7 +66,7 @@ class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> 
   create = async () => {
     if (this.props.create) {
       try {
-        this.setState({ status: 'creating' });
+        this.setState({ status: 'creating', error: null });
         const data = await this.props.create(this.state.data);
         this.props.onCreateSuccess?.(data);
         this.setState({ status: 'created', data });
@@ -79,7 +79,7 @@ class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> 
   update = async () => {
     if (this.props.update && this.props.id) {
       try {
-        this.setState({ status: 'updating' });
+        this.setState({ status: 'updating', error: null });
         const data = await this.props.update(this.state.data);
         this.props.onUpdateSuccess?.(data);
         this.setState({ status: 'updated', data });
@@ -92,7 +92,7 @@ class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> 
   remove = async () => {
     if (this.props.remove && this.props.id) {
       try {
-        this.setState({ status: 'deleting' });
+        this.setState({ status: 'deleting', error: null });
         await this.props.remove(this.props.id);
         this.setState({ status: 'removed' });
         this.props.onRemoveSuccess?.(this.props.id);
@@ -104,6 +104,7 @@ class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> 
 
   onChange: OnChangeHandler<T> = (value, key) => {
     this.setState((state) => ({
+      error: null,
       data: {
         ...state.data,
         [key]: value
@@ -122,5 +123,3 @@ class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> 
     });
   }
 }
-
-export default FormHandler;

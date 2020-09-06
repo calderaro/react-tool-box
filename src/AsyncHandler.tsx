@@ -1,56 +1,51 @@
-import * as React from 'react'
+import * as React from 'react';
 
 export interface AsyncHandlerProps<T> {
-  auto?: boolean // auto exec on did mount
-  setDefaultState?: () => T
-  handler: () => Promise<T>
-  children(res: {
-    state: State<T>
-    execute: () => Promise<void>
-  }): React.ReactNode
+  auto?: boolean; // auto exec on did mount
+  setDefaultState?: () => T;
+  handler: () => Promise<T>;
+  children(res: { state: State<T>; execute: () => Promise<void> }): React.ReactNode;
 }
 
 export interface State<T> {
-  status: 'init' | 'executing' | 'executed' | 'failure'
-  data: T | null
-  error: Error | null
+  status: 'init' | 'executing' | 'executed' | 'failure';
+  data: T | null;
+  error: Error | null;
 }
 
-class AsyncHandler<T> extends React.Component<AsyncHandlerProps<T>, State<T>> {
+export class AsyncHandler<T> extends React.Component<AsyncHandlerProps<T>, State<T>> {
   constructor(props: AsyncHandlerProps<T>) {
-    super(props)
+    super(props);
     this.state = {
       status: 'init',
       data: null,
-      error: null,
-    }
+      error: null
+    };
   }
 
   componentDidMount() {
-    const { setDefaultState, auto } = this.props
+    const { setDefaultState, auto } = this.props;
 
     if (setDefaultState) {
-      this.setState({ data: setDefaultState() })
+      this.setState({ data: setDefaultState() });
     }
 
     if (auto) {
-      this.execute()
+      this.execute();
     }
   }
 
   execute = async () => {
     try {
-      this.setState({ status: 'executing' })
-      const data = await this.props.handler()
-      this.setState({ status: 'executed', data })
+      this.setState({ status: 'executing' });
+      const data = await this.props.handler();
+      this.setState({ status: 'executed', data });
     } catch (error) {
-      this.setState({ status: 'failure', error })
+      this.setState({ status: 'failure', error });
     }
-  }
+  };
 
   render() {
-    return this.props.children?.({ state: this.state, execute: this.execute })
+    return this.props.children?.({ state: this.state, execute: this.execute });
   }
 }
-
-export default AsyncHandler

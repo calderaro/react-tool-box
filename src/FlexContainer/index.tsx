@@ -1,10 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { style } from 'typestyle';
 
-interface Props {
+export interface FlexContainerProps {
   flexDirection?: 'inherit' | 'initial' | 'revert' | 'unset' | 'column' | 'column-reverse' | 'row' | 'row-reverse';
   alignItems?: string;
   justifyContent?: string;
+  padding?: number | string;
 }
 
 const styles = style({
@@ -14,16 +15,21 @@ const styles = style({
   justifyContent: 'center'
 });
 
-const FlexContainer: React.FC<Props> = ({ children, flexDirection, alignItems, justifyContent }) => (
-  <div className={styles} style={{ flexDirection, alignItems, justifyContent }}>
+export const FlexContainer: React.FC<FlexContainerProps> = ({
+  children,
+  flexDirection,
+  alignItems,
+  justifyContent,
+  padding
+}) => (
+  <div className={styles} style={{ flexDirection, alignItems, justifyContent, padding }}>
     {children}
   </div>
 );
 
 FlexContainer.defaultProps = {
+  padding: 0,
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center'
 };
-
-export default FlexContainer;

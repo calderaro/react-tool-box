@@ -1,119 +1,108 @@
-import { stylesheet } from 'typestyle';
+import { style } from 'typestyle';
 
-interface ButtonTheme {
-  backgroundColor: string;
-  backgroundColorHover: string;
-  textColor: string;
-  textColorHover: string;
-  borderColor: string;
-  borderColorHover: string;
+export interface ButtonTheme {
+  button: {
+    borderRadius: number | string;
+    backgroundColor: string;
+    borderColor: string;
+    borderWidth: number | string;
+    borderStyle: string;
+
+    backgroundColorHover: string;
+    borderColorHover: string;
+    borderWidthHover: number | string;
+    borderStyleHover: string;
+  };
+  label: {
+    color: string;
+    colorHover: string;
+    fontSize: number | string;
+  };
 }
 
-export const defaultColors: ButtonTheme = {
-  backgroundColor: '#4b7af3',
-  backgroundColorHover: '#5A6EBE',
-  textColor: '#fff',
-  textColorHover: '#fff',
-  borderColor: '#4b7af3',
-  borderColorHover: '#4b7af3'
-};
-
-export const whiteColors: ButtonTheme = {
-  backgroundColor: '#fff',
-  backgroundColorHover: '#e4e8f0',
-  textColor: '#595b97',
-  textColorHover: '#FFF',
-  borderColor: '#e4e8f0',
-  borderColorHover: '#e4e8f0'
-};
-
-export const greenColors: ButtonTheme = {
-  backgroundColorHover: '#4b7cf3',
-  backgroundColor: '#41b883',
-  textColor: '#fff',
-  textColorHover: '#fff',
-  borderColor: '#41b883',
-  borderColorHover: '#41b883'
-};
-
-export const grayColors: ButtonTheme = {
-  backgroundColor: '#f2f4f8',
-  backgroundColorHover: '#dadde3',
-  textColor: '#595c97',
-  textColorHover: '#fff',
-  borderColor: '#f2f4f8',
-  borderColorHover: '#f2f4f8'
-};
-
-export const lightRedColors: ButtonTheme = {
-  backgroundColor: '#FFF',
-  backgroundColorHover: '#FFF',
-  textColor: '#f5212e',
-  textColorHover: '#f5212e',
-  borderColor: '#f5212e',
-  borderColorHover: '#f5212e'
-};
-
-function applyButtonTheme(theme: ButtonTheme) {
-  return {
-    color: theme.textColor,
-    background: theme.backgroundColor,
+export const defaultTheme: ButtonTheme = {
+  button: {
+    borderRadius: 4,
+    backgroundColor: '#f2f4f8',
+    borderColor: '#f2f4f8',
     borderWidth: 1,
-    boderStyle: 'solid',
-    borderColor: theme.borderColor,
+    borderStyle: 'solid',
 
+    backgroundColorHover: '#dadde3',
+    borderColorHover: '#f2f4f8',
+    borderWidthHover: 1,
+    borderStyleHover: 'solid'
+  },
+  label: {
+    color: '#fff',
+    colorHover: '#fff',
+    fontSize: '.9em'
+  }
+};
+
+export function applyButtonTheme(theme: ButtonTheme) {
+  return {
+    borderRadius: theme.button.borderRadius,
+    backgroundColor: theme.button.backgroundColor,
+    borderColor: theme.button.borderColor,
+    borderWidth: theme.button.borderWidth,
+    borderStyle: theme.button.borderStyle,
     $nest: {
       '&:hover': {
-        background: theme.backgroundColorHover,
-        borderColor: theme.borderColorHover,
-        color: theme.textColorHover
+        background: theme.button.backgroundColorHover,
+        borderColor: theme.button.borderColorHover,
+        borderWidth: theme.button.borderWidth,
+        borderStyle: theme.button.borderStyle,
+        $nest: {
+          '& > span': {
+            color: theme.label.colorHover,
+            fontSize: theme.label.fontSize
+          }
+        }
+      },
+      '& > span': {
+        color: theme.label.color,
+        fontSize: theme.label.fontSize
       }
     }
   };
 }
 
-const styles = stylesheet({
-  buttonContainer: {},
-  button: {
-    borderRadius: '0.2em',
-    color: `${defaultColors.textColor}`,
-    backgroundColor: defaultColors.backgroundColor,
-    border: `1px solid ${defaultColors.borderColor}`,
-    fontFamily: 'Mukta',
-    fontSize: '1em',
-    width: '10em',
-    padding: '0.5em 0.6em',
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    justifyItems: 'center',
-    alignSelf: 'center',
-    $nest: {
-      '&:hover': {
-        background: `${defaultColors.backgroundColorHover}`,
-        color: defaultColors.textColorHover,
-        border: defaultColors.borderColorHover
+export const button = style({
+  borderRadius: defaultTheme.button.borderRadius,
+  backgroundColor: defaultTheme.button.backgroundColor,
+  borderColor: defaultTheme.button.borderColor,
+  borderWidth: defaultTheme.button.borderWidth,
+  borderStyle: defaultTheme.button.borderStyle,
+  fontSize: '1em',
+  padding: '0.5em 0.6em',
+  display: 'flex',
+  alignItems: 'center',
+  justifyItems: 'center',
+  cursor: 'pointer',
+  $nest: {
+    '&:hover': {
+      background: defaultTheme.button.backgroundColorHover,
+      borderColor: defaultTheme.button.borderColorHover,
+      borderWidth: defaultTheme.button.borderWidth,
+      borderStyle: defaultTheme.button.borderStyle,
+      $nest: {
+        '& > span': {
+          color: defaultTheme.label.colorHover,
+          fontSize: defaultTheme.label.fontSize
+        }
       }
+    },
+    '& > span': {
+      color: defaultTheme.label.color,
+      fontSize: defaultTheme.label.fontSize
     }
-  },
-  buttonSmall: {
-    width: 'auto',
-    padding: '.25em .6em'
-  },
-  iconContainer: {
-    width: '1em',
-    height: '1em',
-    marginRight: '.3em'
-  },
-  iconImage: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain'
-  },
-  buttonWhite: applyButtonTheme(whiteColors),
-  buttonGreen: applyButtonTheme(greenColors),
-  buttonGray: applyButtonTheme(grayColors),
-  buttonLightRed: applyButtonTheme(lightRedColors)
+  }
 });
 
-export default styles;
+export const buttonContainer = style({});
+
+export const buttonSmall = style({
+  width: 'auto',
+  padding: '.25em .6em'
+});

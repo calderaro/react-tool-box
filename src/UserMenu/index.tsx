@@ -1,27 +1,30 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './styles.module.css';
 import { style } from 'typestyle';
 
-interface Props {
-  onLogout: () => void;
-  open: boolean;
-  admin: boolean;
+export interface UserMenuButton {
+  label: string;
+  to: string;
 }
 
-const container = style({
+export interface UserMenuProps {
+  onLogout: () => void;
+  open: boolean;
+  buttons: UserMenuButton[];
+}
+
+const usermenu = style({
   position: 'absolute',
-  top: 'calc(100% + 1px)',
-  right: '0',
+  top: 'calc(100% + 0.9em)',
+  right: 0,
   background: '#fff',
   border: '1px solid rgba(0, 0, 0, 0.05)',
-  borderRadius: '6px',
-  borderTop: '0',
-  borderTopLeftRadius: '0',
-  borderTopRightRadius: '0',
+  borderRadius: 6,
+  borderTop: 0,
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 0,
   boxShadow: '2px 2px 4px 1px rgba(0, 0, 0, 0.07)',
-  padding: '0.65em 1em',
-  zIndex: 99
+  padding: '0.65em 1em'
 });
 
 const usermenuButton = style({
@@ -32,34 +35,39 @@ const usermenuButton = style({
   textAlign: 'left',
   fontSize: '1em',
   color: '#666',
-  minHeight: '16px',
-  cursor: 'pointer'
+  minHeight: 16,
+  cursor: 'pointer',
+  background: 'none',
+  outline: 'none',
+  border: 'none',
+  textDecoration: 'none',
+  $nest: {
+    '&:hover': {
+      fontWeight: 500
+    }
+  }
 });
 
-const UserMenu: React.FC<Props> = (props: Props) => {
-  const { onLogout, open, admin } = props;
+const separator = style({
+  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+  margin: '0.65em 0'
+});
+
+export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
+  const { onLogout, open, buttons } = props;
   return (
-    <div className={container} style={{ display: open ? 'block' : 'none' }}>
-      <Link to="/profile" className={usermenuButton}>
-        Perfil
-      </Link>
-      <Link to="/dashboard" className={usermenuButton}>
-        Dashboard
-      </Link>
-      {admin ? (
-        <>
-          <div className={styles.separator} />
-          <Link to="/admin" className={usermenuButton}>
-            Admin
-          </Link>
-        </>
+    <div className={usermenu} style={{ display: open ? 'block' : 'none' }}>
+      {buttons.map(({ label, to }, index) => (
+        <Link key={to + index} to={to} className={usermenuButton}>
+          {label}
+        </Link>
+      ))}
+      <div className={separator} />
+      {onLogout ? (
+        <button onClick={onLogout} className={usermenuButton}>
+          Cerrar sesión
+        </button>
       ) : null}
-      <div className={styles.separator} />
-      <button onClick={onLogout} className={usermenuButton}>
-        Cerrar sesión
-      </button>
     </div>
   );
 };
-
-export default UserMenu;
