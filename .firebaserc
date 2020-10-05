@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angel-calderaro"
+  },
+  "targets": {
+    "angel-calderaro": {
+      "hosting": {
+        "react-toolbox": [
+          "react-toolbox"
+        ]
+      }
+    }
+  }
+}

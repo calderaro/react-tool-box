@@ -1,5 +1,4 @@
 import * as React from 'react';
-import CustomError from './CustomError';
 
 export type OnChangeHandler<T> = <K extends keyof T>(value: T[K], key: K) => void;
 
@@ -28,7 +27,7 @@ export interface FormHandlerProps<T> {
 export interface FormState<T> {
   status: string;
   data: T;
-  error: CustomError | null;
+  error: Error | null;
 }
 
 export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormState<T>> {

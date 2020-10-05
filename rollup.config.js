@@ -1,9 +1,11 @@
-import typescript from 'rollup-plugin-typescript2';
-
 import pkg from './package.json';
+import svgr from '@svgr/rollup';
+import typescript from 'rollup-plugin-typescript2';
+import postcss from 'rollup-plugin-postcss';
+import url from 'rollup-plugin-url';
 
 export default {
-  input: 'src/index.tsx',
+  input: 'src/lib.tsx',
   output: [
     {
       file: pkg.main,
@@ -13,7 +15,17 @@ export default {
       strict: false
     }
   ],
-  plugins: [typescript()],
+  plugins: [
+    url(),
+    svgr(),
+    postcss({
+      plugins: []
+    }),
+    typescript({
+      typescript: require('typescript'),
+      objectHashIgnoreUnknownHack: false
+    })
+  ],
   external: [
     'react',
     'react-dom',
@@ -21,6 +33,7 @@ export default {
     'typestyle',
     'csx',
     'react-datepicker',
-    'react-datepicker/dist/react-datepicker.css'
+    'react-datepicker/dist/react-datepicker.css',
+    'lodash'
   ]
 };

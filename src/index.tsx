@@ -1,35 +1,17 @@
-export * from './AsyncHandler';
-export * from './FormHandler';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
+import App from './App';
+import './index.css';
 
-export * from './GridContainer';
-export * from './FlexContainer';
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-export * from './Button';
-
-export { default as CustomError } from './CustomError';
-
-// Inputs
-export * from './Inputs/InputText';
-export * from './Inputs/InputCheckbox';
-export * from './Inputs/InputSelect';
-export * from './Inputs/InputTextarea';
-export * from './Inputs/InputDate';
-export * from './Inputs/Button';
-
-// Navigation
-export * from './UserMenu';
-export * from './Header';
-
-// Containers
-export * from './Layout';
-export * from './Content';
-export * from './ButtonsContainer';
-export * from './FlexContainer';
-export * from './GridContainer';
-export * from './Box';
-
-// Lists
-export * from './List';
-export * from './List/ListHeader';
-export * from './List/ListRow';
-export * from './List/ListLabel';
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

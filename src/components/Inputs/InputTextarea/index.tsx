@@ -4,7 +4,7 @@ import styles from './styles';
 
 export interface inputTextareaProps {
   id?: string;
-  value: string;
+  value?: string;
   label?: string;
   placeholder?: string;
   onChange?: (value: string, id?: string) => void;
