@@ -4,8 +4,6 @@ export * from './components/Handlers/FormHandler';
 export * from './components/GridContainer';
 export * from './components/FlexContainer';
 
-export * from './components/Button';
-
 // Inputs
 export * from './components/Inputs/InputText';
 export * from './components/Inputs/InputCheckbox';

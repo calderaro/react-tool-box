@@ -1,6 +1,6 @@
 {
   "name": "@calderaro/react-toolbox",
-  "version": "0.0.21",
+  "version": "0.0.27",
   "description": "react tool box",
   "author": "Angel Calderaro",
   "license": "ISC",
@@ -43,7 +43,7 @@
     "eject": "react-scripts eject",
     "build": "rollup -c",
     "start-rollup": "rollup -c -w",
-    "prepublish": "yarn build",
+    "prepublish": "npm run build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --fix --color",
     "lint:ci": "eslint --ext .js,.jsx,.ts,.tsx src --quiet"
   },
