@@ -15,4 +15,7 @@ export default class CustomError extends Error {
       this.errors[key] = [message];
     }
   };
+  getError = (key: string): string => {
+    return this.errors[key]?.join(', ');
+  };
 }
