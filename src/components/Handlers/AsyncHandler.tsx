@@ -3,6 +3,8 @@ import * as React from 'react';
 export interface AsyncHandlerProps<T> {
   auto?: boolean; // auto exec on did mount
   setDefaultState?: () => T;
+  onExecuteSuccess?: (data: T) => void;
+  onExecuteError?: (error: Error) => void;
   handler: () => Promise<T>;
   children(res: { state: State<T>; execute: () => Promise<void> }): React.ReactNode;
 }
@@ -39,8 +41,10 @@ export class AsyncHandler<T> extends React.Component<AsyncHandlerProps<T>, State
     try {
       this.setState({ status: 'executing' });
       const data = await this.props.handler();
+      this.props.onExecuteSuccess?.(data);
       this.setState({ status: 'executed', data });
     } catch (error) {
+      this.props.onExecuteError?.(error);
       this.setState({ status: 'failure', error });
     }
   };

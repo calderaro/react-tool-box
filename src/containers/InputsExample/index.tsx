@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { style } from 'typestyle';
 import { Box } from '../../components/Box';
-import Button from '../../components/Button';
 import { InputDate } from '../../components/Inputs/InputDate';
 import { InputSelect } from '../../components/Inputs/InputSelect';
 import { InputText } from '../../components/Inputs/InputText';
@@ -26,7 +25,6 @@ const InputsExample: React.FC = () => (
           <InputTextarea label="lol" />
           <InputDate label="lol" />
           <InputSelect />
-          <Button>Save</Button>
         </div>
       </Box>
     </div>
