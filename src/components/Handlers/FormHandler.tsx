@@ -26,6 +26,7 @@ export interface FormHandlerProps<T> {
 
 export interface FormState<T> {
   status: string;
+  current: T;
   data: T;
   error: Error | null;
 }
@@ -35,6 +36,7 @@ export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormSta
     super(props);
     this.state = {
       status: '',
+      current: this.props.getDefaultState(),
       data: this.props.getDefaultState(),
       error: null
     };
@@ -49,13 +51,14 @@ export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormSta
       if (!this.props.id) {
         return this.setState({
           status: 'loaded',
+          current: this.props.getDefaultState(),
           data: this.props.getDefaultState()
         });
       }
       try {
         this.setState({ status: 'loading', error: null });
         const data = await this.props.load(this.props.id);
-        this.setState({ status: 'loaded', data });
+        this.setState({ status: 'loaded', current: data, data });
       } catch (error) {
         this.setState({ status: 'failure', error });
       }
@@ -68,7 +71,7 @@ export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormSta
         this.setState({ status: 'creating', error: null });
         const data = await this.props.create(this.state.data);
         this.props.onCreateSuccess?.(data);
-        this.setState({ status: 'created', data });
+        this.setState({ status: 'created', current: data, data });
       } catch (error) {
         this.setState({ status: 'failure', error });
       }
@@ -81,7 +84,7 @@ export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormSta
         this.setState({ status: 'updating', error: null });
         const data = await this.props.update(this.state.data);
         this.props.onUpdateSuccess?.(data);
-        this.setState({ status: 'updated', data });
+        this.setState({ status: 'updated', current: data, data });
       } catch (error) {
         this.setState({ status: 'failure', error });
       }
@@ -93,7 +96,7 @@ export class FormHandler<T> extends React.Component<FormHandlerProps<T>, FormSta
       try {
         this.setState({ status: 'deleting', error: null });
         await this.props.remove(this.props.id);
-        this.setState({ status: 'removed' });
+        this.setState({ status: 'removed', current: this.props.getDefaultState(), data: this.props.getDefaultState() });
         this.props.onRemoveSuccess?.(this.props.id);
       } catch (error) {
         this.setState({ status: 'failure', error });
