@@ -71,7 +71,7 @@ const arrowIconContainer = style({
 export const InputSelect: React.FC<InputSelectProps> = (props) => {
   const [focus, setFocus] = React.useState(false);
   const { id, value, label, onChange, options, placeholder, containerClassname, error, showLabel, showError } = props;
-  //const valueIndex = options?.findIndex((item) => item.value === value);
+  const selectedOption = options?.find((item) => item.value === value);
 
   return (
     <div className={classes(styles.container, containerClassname)}>
@@ -85,7 +85,11 @@ export const InputSelect: React.FC<InputSelectProps> = (props) => {
             style={{ borderColor: error ? 'red' : '' }}
           >
             <div className={buttonLabelContainer}>
-              {value ? <span>{value}</span> : <span style={{ color: '#888' }}>{placeholder}</span>}
+              {value ? (
+                <span>{selectedOption?.label || value}</span>
+              ) : (
+                <span style={{ color: '#888' }}>{placeholder}</span>
+              )}
             </div>
             <div className={arrowIconContainer} style={{ borderColor: error ? 'red' : '' }}>
               <FontAwesomeIcon icon={faAngleDown} />
