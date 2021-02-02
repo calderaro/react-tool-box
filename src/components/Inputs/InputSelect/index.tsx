@@ -7,18 +7,18 @@ import { InputError } from '../InputError';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
-interface InputSelectOption {
+interface InputSelectOption<T> {
   label: string;
-  value: string;
+  value: T;
 }
 
-export interface InputSelectProps {
+export interface InputSelectProps<T> {
   id?: string;
-  value?: string;
+  value?: T;
   placeholder?: string;
   password?: boolean;
-  options?: InputSelectOption[];
-  onChange?: (value: string, id?: string) => void;
+  options?: InputSelectOption<T>[];
+  onChange?: (value: T, id?: string) => void;
   containerClassname?: string;
   label?: string;
   error?: string;
@@ -68,7 +68,7 @@ const arrowIconContainer = style({
   borderColor: Colors.borderColor
 });
 
-export const InputSelect: React.FC<InputSelectProps> = (props) => {
+export default function InputSelect<T>(props: InputSelectProps<T>) {
   const [focus, setFocus] = React.useState(false);
   const { id, value, label, onChange, options, placeholder, containerClassname, error, showLabel, showError } = props;
   const selectedOption = options?.find((item) => item.value === value);
@@ -108,7 +108,7 @@ export const InputSelect: React.FC<InputSelectProps> = (props) => {
       <InputError error={error} showError={showError} />
     </div>
   );
-};
+}
 
 InputSelect.defaultProps = {
   showError: true,
