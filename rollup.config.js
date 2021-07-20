@@ -3,18 +3,11 @@ import svgr from '@svgr/rollup';
 import typescript from 'rollup-plugin-typescript2';
 import postcss from 'rollup-plugin-postcss';
 import url from 'rollup-plugin-url';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
   input: 'src/lib.tsx',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
-      strict: false
-    }
-  ],
+  output: [{ file: pkg.main, format: 'cjs', exports: 'named', sourcemap: true, strict: false, plugins: [terser()] }],
   plugins: [
     url(),
     svgr(),
