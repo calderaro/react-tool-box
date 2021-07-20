@@ -58,6 +58,8 @@ export const InputNumber: React.FC<InputNumberProps> = (props) => {
     }
   };
 
+  console.log(min, max);
+
   return (
     <div className={classes(styles.container, containerClassname)}>
       <InputLabel showLabel={showLabel} label={label} id={id} />
