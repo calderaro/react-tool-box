@@ -4,7 +4,7 @@ import { InputError } from '../InputError';
 import { InputLabel } from '../InputLabel';
 import styles from './styles';
 
-export interface InputTextProps {
+export interface InputNumberProps {
   id?: string;
   value?: string | number;
   label?: string;
@@ -28,7 +28,7 @@ export interface InputTextProps {
   showError?: boolean;
 }
 
-export const InputNumber: React.FC<InputTextProps> = (props) => {
+export const InputNumber: React.FC<InputNumberProps> = (props) => {
   const {
     id,
     value,

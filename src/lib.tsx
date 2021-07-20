@@ -6,10 +6,13 @@ export * from './components/FlexContainer';
 
 // Inputs
 export * from './components/Inputs/InputText';
+export * from './components/Inputs/InputNumber';
 export * from './components/Inputs/InputCheckbox';
 export * from './components/Inputs/InputSelect';
 export * from './components/Inputs/InputTextarea';
 export * from './components/Inputs/InputDate';
+export * from './components/Inputs/InputError';
+export * from './components/Inputs/InputLabel';
 export * from './components/Inputs/Button';
 
 // Navigation
