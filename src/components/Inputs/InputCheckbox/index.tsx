@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { InputError } from '../InputError';
+import { InputLabel } from '../InputLabel';
 import styles from './styles';
 
 export interface InputCheckbox {
@@ -7,19 +9,16 @@ export interface InputCheckbox {
   label?: string;
   text?: string | React.ElementType;
   onChange?: (value: boolean, id?: string) => void;
+  showLabel?: boolean;
+  showError?: boolean;
+  error?: string;
 }
 
 export const InputCheckbox: React.FC<InputCheckbox> = (props) => {
-  const { id, value, label, text, onChange } = props;
+  const { id, value, label, showError, showLabel, error, onChange } = props;
   return (
     <div className={styles.container}>
-      <div className={styles.labelContainer}>
-        {label ? (
-          <label className={styles.label} htmlFor={id}>
-            {label}
-          </label>
-        ) : null}
-      </div>
+      <InputLabel showLabel={showLabel} label={label} id={id} />
       <div className={styles.wrapper}>
         <input
           type="checkbox"
@@ -32,10 +31,13 @@ export const InputCheckbox: React.FC<InputCheckbox> = (props) => {
             }
           }}
         />
-        <label htmlFor={id} className={styles.text}>
-          {text}
-        </label>
+        <InputError showError={showError} error={error} />
       </div>
     </div>
   );
+};
+
+InputCheckbox.defaultProps = {
+  showLabel: true,
+  showError: true
 };

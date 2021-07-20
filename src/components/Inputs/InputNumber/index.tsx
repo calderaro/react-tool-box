@@ -9,8 +9,7 @@ export interface InputTextProps {
   value?: string | number;
   label?: string;
   placeholder?: string;
-  password?: boolean;
-  onChange?: (value: string, id?: string) => void;
+  onChange?: (value: number, id?: string) => void;
   onHelp?: () => void;
   disabled?: boolean;
   readOnly?: boolean;
@@ -23,18 +22,19 @@ export interface InputTextProps {
   buttonIcon?: React.ComponentType<{ className: string }>;
   onButtonClick?: () => void;
   error?: string;
+  min?: number;
+  max?: number;
   showLabel?: boolean;
   showError?: boolean;
 }
 
-export const InputText: React.FC<InputTextProps> = (props) => {
+export const InputNumber: React.FC<InputTextProps> = (props) => {
   const {
     id,
     value,
     label,
     onChange,
     placeholder,
-    password,
     disabled,
     readOnly,
     containerClassname,
@@ -46,13 +46,15 @@ export const InputText: React.FC<InputTextProps> = (props) => {
     buttonIcon: Icon,
     onButtonClick,
     error,
+    min,
+    max,
     showLabel,
     showError
   } = props;
   const [isFocus, setFocus] = React.useState<boolean>(false);
   const change = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
-      onChange(e.target.value, id);
+      onChange(Number(e.target.value), id);
     }
   };
 
@@ -64,7 +66,6 @@ export const InputText: React.FC<InputTextProps> = (props) => {
           id={id}
           className={classes(styles.input, inputClassname)}
           value={value}
-          type={password ? 'password' : 'text'}
           onChange={change}
           placeholder={placeholder}
           disabled={disabled}
@@ -98,7 +99,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
   );
 };
 
-InputText.defaultProps = {
+InputNumber.defaultProps = {
   showError: true,
   showLabel: true
 };

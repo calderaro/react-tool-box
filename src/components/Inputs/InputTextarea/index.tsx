@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { classes } from 'typestyle';
+import { InputError } from '../InputError';
+import { InputLabel } from '../InputLabel';
 import styles from './styles';
 
 export interface inputTextareaProps {
@@ -47,15 +49,7 @@ export const InputTextarea: React.FC<inputTextareaProps> = (props) => {
 
   return (
     <div className={classes(styles.container, containerClassname)}>
-      {showLabel ? (
-        <div className={styles.labelContainer}>
-          {label ? (
-            <label className={styles.label} htmlFor={id}>
-              {label}
-            </label>
-          ) : null}
-        </div>
-      ) : null}
+      <InputLabel showLabel={showLabel} label={label} id={id} />
       <textarea
         id={id}
         className={classes(styles.input, inputClassname)}
@@ -69,11 +63,7 @@ export const InputTextarea: React.FC<inputTextareaProps> = (props) => {
         onClick={onClick}
         autoComplete="off"
       />
-      {showError ? (
-        <div className={styles.errorContaienr}>
-          <span className={styles.error}>{error}</span>
-        </div>
-      ) : null}
+      <InputError showError={showError} error={error} />
     </div>
   );
 };

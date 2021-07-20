@@ -24,7 +24,7 @@ export const InputDate: React.FC<InputDateProps> = (props) => {
 
   return (
     <div className={styles.container}>
-      <InputLabel showLabel={showLabel} label={label} />
+      <InputLabel showLabel={showLabel} label={label} id={id} />
       <DatePicker
         minDate={minDate}
         className={styles.input}

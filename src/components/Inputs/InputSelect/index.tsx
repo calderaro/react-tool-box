@@ -68,7 +68,7 @@ const arrowIconContainer = style({
   borderColor: Colors.borderColor
 });
 
-export default function InputSelect<T>(props: InputSelectProps<T>) {
+export function InputSelect<T>(props: InputSelectProps<T>) {
   const [focus, setFocus] = React.useState(false);
   const { id, value, label, onChange, options, placeholder, containerClassname, error, showLabel, showError } = props;
   const selectedOption = options?.find((item) => item.value === value);
