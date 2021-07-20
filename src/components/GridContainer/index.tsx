@@ -14,6 +14,7 @@ export interface GridContainerProps {
   columns?: string;
   justifyContent?: string;
   alignItems?: string;
+  background?: string;
 }
 
 export const GridContainer: React.FC<GridContainerProps> = ({
@@ -22,7 +23,8 @@ export const GridContainer: React.FC<GridContainerProps> = ({
   padding,
   columns,
   justifyContent,
-  alignItems
+  alignItems,
+  background
 }) => (
   <div
     className={styles}
@@ -31,7 +33,8 @@ export const GridContainer: React.FC<GridContainerProps> = ({
       padding,
       gridTemplateColumns: columns,
       justifyContent,
-      alignItems
+      alignItems,
+      background: background || 'none'
     }}
   >
     {children}
