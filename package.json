@@ -1,6 +1,6 @@
 {
   "name": "@calderaro/react-toolbox",
-  "version": "0.0.41",
+  "version": "0.0.47",
   "description": "react tool box",
   "author": "Angel Calderaro",
   "license": "ISC",
@@ -16,8 +16,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.13",
-    "rollup-plugin-terser": "^7.0.2"
+    "@fortawesome/react-fontawesome": "^0.1.13"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -60,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "rollup-plugin-terser": "^7.0.2",
     "@svgr/rollup": "^5.5.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",

@@ -2,7 +2,7 @@ export * from './components/Handlers/AsyncHandler';
 export * from './components/Handlers/FormHandler';
 
 export * from './components/GridContainer';
-export * from './components/FlexContainer';
+export * from './components/Container';
 
 // Inputs
 export * from './components/Inputs/InputText';
@@ -23,7 +23,7 @@ export * from './components/Header';
 export * from './components/Layout';
 export * from './components/Content';
 export * from './components/ButtonsContainer';
-export * from './components/FlexContainer';
+export * from './components/Container';
 export * from './components/GridContainer';
 export * from './components/Box';
 
