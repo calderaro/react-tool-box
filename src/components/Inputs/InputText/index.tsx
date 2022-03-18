@@ -10,7 +10,7 @@ export interface InputTextProps {
   label?: string;
   placeholder?: string;
   password?: boolean;
-  onChange?: (value: string, id?: string) => void;
+  onChange?: (value: string, e: React.ChangeEvent<HTMLInputElement>) => void;
   onHelp?: () => void;
   disabled?: boolean;
   readOnly?: boolean;
@@ -52,7 +52,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
   const [isFocus, setFocus] = React.useState<boolean>(false);
   const change = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
-      onChange(e.target.value, id);
+      onChange(e.target.value, e);
     }
   };
 

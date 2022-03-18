@@ -14,6 +14,7 @@ export * from './components/Inputs/InputDate';
 export * from './components/Inputs/InputError';
 export * from './components/Inputs/InputLabel';
 export * from './components/Inputs/Button';
+export * from './components/Inputs/InputNumberFormatted';
 
 // Navigation
 export * from './components/UserMenu';
