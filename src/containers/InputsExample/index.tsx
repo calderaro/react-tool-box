@@ -7,6 +7,7 @@ import { InputText } from '../../components/Inputs/InputText';
 import { InputTextarea } from '../../components/Inputs/InputTextarea';
 import { Layout } from '../../components/Layout';
 import { InputNumber } from '../../components/Inputs/InputNumber';
+import { InputNumberFormatted } from '../../lib';
 
 const container = style({
   width: '100%',
@@ -19,6 +20,9 @@ const wrapper = style({
 
 const InputsExample: React.FC = () => {
   const [number, setNumber] = useState(2);
+  const [numberMax, setNumberMax] = useState(2);
+  const [numberFormatted, setNumberFormatted] = useState(2);
+  const [numberFormattedMax, setNumberFormattedMax] = useState(2);
 
   return (
     <Layout>
@@ -30,6 +34,19 @@ const InputsExample: React.FC = () => {
             <InputDate label="lol" />
             <InputSelect />
             <InputNumber label="InputNumber" value={number} onChange={setNumber} />
+            <InputNumber label="InputNumber with Max" value={numberMax} onChange={setNumberMax} max={999} />
+            <InputNumberFormatted
+              label="InputNumberFormatted"
+              value={numberFormatted}
+              onChange={setNumberFormatted}
+              max={999}
+            />
+            <InputNumberFormatted
+              label="InputNumberFormatted With max value"
+              value={numberFormattedMax}
+              onChange={setNumberFormattedMax}
+              max={999}
+            />
           </div>
         </Box>
       </div>

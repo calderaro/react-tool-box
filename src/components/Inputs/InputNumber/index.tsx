@@ -24,6 +24,7 @@ export interface InputNumberProps {
   error?: string;
   showLabel?: boolean;
   showError?: boolean;
+  max?: number;
 }
 
 export const InputNumber: React.FC<InputNumberProps> = (props) => {
@@ -45,7 +46,8 @@ export const InputNumber: React.FC<InputNumberProps> = (props) => {
     onButtonClick,
     error,
     showLabel,
-    showError
+    showError,
+    max
   } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
   const [localValue, setLocalValue] = useState('');
@@ -97,6 +99,12 @@ export const InputNumber: React.FC<InputNumberProps> = (props) => {
             const toAdd = c.length - e.target.value.length;
 
             if (!isNaN(n)) {
+              if (max !== undefined && n > max) {
+                setLocalValue(handleNumber(max));
+                onChange?.(max);
+                return;
+              }
+
               e.target.setSelectionRange(selection + toAdd, selection + toAdd);
               setLocalValue(c);
               onChange?.(n);
@@ -124,3 +132,9 @@ InputNumber.defaultProps = {
   showError: true,
   showLabel: true
 };
+
+function handleNumber(value: number) {
+  return value.toLocaleString('en', {
+    maximumFractionDigits: 2
+  });
+}

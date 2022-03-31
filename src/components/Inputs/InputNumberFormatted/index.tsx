@@ -19,6 +19,7 @@ export interface InputNumberFormattedProps {
   error?: string;
   showLabel?: boolean;
   showError?: boolean;
+  max?: number;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -47,7 +48,8 @@ export const InputNumberFormatted: React.FC<InputNumberFormattedProps> = (props)
     onButtonClick,
     error,
     showLabel,
-    showError
+    showError,
+    max
   } = props;
 
   const ref = React.useRef<HTMLInputElement | null>(null);
@@ -104,6 +106,13 @@ export const InputNumberFormatted: React.FC<InputNumberFormattedProps> = (props)
             const toAdd = t.length - e.target.value.length;
 
             if (!isNaN(n)) {
+              if (max !== undefined && max < n) {
+                lastValue.current = handleNumber(max);
+                e.target.value = handleNumber(max);
+                onChange?.(max, e);
+                return;
+              }
+
               lastValue.current = t;
               e.target.value = t;
               e.target.setSelectionRange(selection + toAdd, selection + toAdd);
@@ -134,3 +143,10 @@ InputNumberFormatted.defaultProps = {
   showError: true,
   showLabel: true
 };
+
+function handleNumber(value: number) {
+  return value.toLocaleString('en', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
