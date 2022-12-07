@@ -1,0 +1,11 @@
+dist
+build
+.babelrc
+.storybook
+.gitignore
+.prettierrc
+.eslintrc
+rollup.config.js
+tsconfig.json
+svgr.config.js
+.npmrc
