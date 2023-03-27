@@ -1,11 +1,11 @@
 import { stylesheet } from "typestyle";
-import { BaseInput, Colors, Sizes } from "../styles";
+import { Sizes } from "../styles";
 
 const styles = stylesheet({
   input: {
     width: "100%",
     height: "100%",
-    fontSize: "1em",
+    fontSize: "16px",
     background: "#FEFEFE",
     boxSizing: "border-box",
     borderRadius: Sizes.borderRadius,

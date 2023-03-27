@@ -46,7 +46,7 @@ const styles = stylesheet({
   input: {
     width: "100%",
     height: "2.7em",
-    fontSize: "1em",
+    fontSize: "16px",
     background: "#FEFEFE",
     borderRadius: Sizes.borderRadius,
     outline: 0,

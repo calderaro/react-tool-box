@@ -25,6 +25,7 @@ export interface InputTextProps {
   error?: string;
   showLabel?: boolean;
   showError?: boolean;
+  type?: React.HTMLInputTypeAttribute;
 }
 
 export const InputText: React.FC<InputTextProps> = (props) => {
@@ -48,6 +49,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
     error,
     showLabel,
     showError,
+    type,
   } = props;
   const [isFocus, setFocus] = React.useState<boolean>(false);
   const change = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +70,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
           id={id}
           className={classes(styles.input, inputClassname)}
           value={value}
-          type={password ? "password" : "text"}
+          type={password ? "password" : type}
           onChange={change}
           placeholder={placeholder}
           disabled={disabled}

@@ -22,6 +22,7 @@ export interface InputTextWithLayoutProps {
   showLabel?: boolean;
   showError?: boolean;
   children?: React.ReactNode;
+  type?: React.HTMLInputTypeAttribute;
 }
 
 export const InputTextWithLayout: React.FC<InputTextWithLayoutProps> = (
@@ -45,6 +46,7 @@ export const InputTextWithLayout: React.FC<InputTextWithLayoutProps> = (
     showLabel,
     showError,
     children,
+    type,
   } = props;
   const [isFocus, setFocus] = React.useState<boolean>(false);
   const change = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +69,7 @@ export const InputTextWithLayout: React.FC<InputTextWithLayoutProps> = (
         id={id}
         className={classes(styles.input, inputClassname)}
         value={value}
-        type={password ? "password" : "text"}
+        type={password ? "password" : type}
         onChange={change}
         placeholder={placeholder}
         disabled={disabled}
