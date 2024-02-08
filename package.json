@@ -1,7 +1,7 @@
 {
   "name": "@calderaro/react-toolbox",
   "private": false,
-  "version": "0.1.11",
+  "version": "0.1.12",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -42,7 +42,8 @@
   "exports": {
     ".": {
       "import": "./dist/react-toolbox.es.js",
-      "require": "./dist/react-toolbox.umd.js"
+      "require": "./dist/react-toolbox.umd.js",
+      "types": "./dist/lib/index.d.ts"
     }
   }
 }
