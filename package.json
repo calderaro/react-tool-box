@@ -1,7 +1,13 @@
 {
   "name": "@calderaro/react-toolbox",
   "private": false,
-  "version": "0.1.12",
+  "version": "0.1.13",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calderaro/react-tool-box"
+  },
+  "license": "MIT",
+  "author": "Angel Calderaro <calderaro94@gmail.com> (https://github.com/calderaro)",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
